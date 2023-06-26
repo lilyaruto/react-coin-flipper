@@ -9,7 +9,7 @@ class Coin extends Component {
         
             return(
             <div className="coin_container">
-                <img className="coin-img" src={imgSrc} alt=""/>
+                <img className={`coin-img ${this.props.isFlipping ? "flip-coin" : ""}`} src={imgSrc} alt="coin"/>
             </div>
         );
     }

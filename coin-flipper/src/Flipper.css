@@ -4,3 +4,34 @@
     align-items: center;
     justify-content: center;
 }
+
+.flipper_title {
+    text-transform: uppercase;
+}
+
+.flip-button {
+    border: none;
+    margin: 20px 0px;
+    width: 100px;
+    height: 30px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: crimson;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.flip-button:disabled {
+    background-color: rgb(247, 85, 118);
+}
+
+.flip-button:hover {
+    background-color: rgb(255, 27, 72);
+    transition: 0.3s;
+}
+
+.winner {
+    border-bottom: 2px solid green;
+}

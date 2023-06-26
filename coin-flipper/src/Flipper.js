@@ -9,7 +9,8 @@ class Flipper extends Component {
             side: -1,
             headsCount: 0,
             tailsCount: 0,
-            flipsCount: 0
+            flipsCount: 0,
+            isFlipping: false
         }
         this.flip = this.flip.bind(this);
     }
@@ -24,16 +25,19 @@ class Flipper extends Component {
                 tailsCount: newFlip === 0 ? st.tailsCount + 1 : st.tailsCount}
             );
         });
+        this.setState({isFlipping: true});
+        setTimeout(() => {
+            this.setState({isFlipping: false});
+        }, 1000);
     }
 
     render() {
-        console.log(this.state.headsCount);
         return(
             <div className="flipper_container">
                 <h1 className="flipper_title">Let's flip a coin!</h1>
-                {this.state.side === -1 ? "" : <Coin side={this.state.side}/>}
-                <button onClick={this.flip} className="flip-button">Flip</button>
-                <span>Out of {this.state.flipsCount} flips, there have been {this.state.headsCount} heads and {this.state.tailsCount} tails.</span>
+                {this.state.side === -1 ? "" : <Coin side={this.state.side} isFlipping={this.state.isFlipping}/>}
+                <button onClick={this.flip} className="flip-button" disabled={this.state.isFlipping}>Flip</button>
+                <span>Out of {this.state.flipsCount} flips, there have been <span className={`heads_counter ${this.state.isFlipping && this.state.side === 1 ? "winner" : ""}`}>{this.state.headsCount} heads</span> and <span className={`heads_counter ${this.state.isFlipping && this.state.side === 0 ? "winner" : ""}`}>{this.state.tailsCount} tails</span>.</span>
             </div>
         );
     }
