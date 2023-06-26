@@ -13,6 +13,7 @@ class Flipper extends Component {
             isFlipping: false
         }
         this.flip = this.flip.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
     flip() {
@@ -31,12 +32,22 @@ class Flipper extends Component {
         }, 1000);
     }
 
+    reset() {
+        this.setState({
+            side: -1,
+            headsCount: 0,
+            tailsCount: 0,
+            flipsCount: 0
+        });
+    }
+
     render() {
         return(
             <div className="flipper_container">
                 <h1 className="flipper_title">Let's flip a coin!</h1>
                 {this.state.side === -1 ? "" : <Coin side={this.state.side} isFlipping={this.state.isFlipping}/>}
                 <button onClick={this.flip} className="flip-button" disabled={this.state.isFlipping}>Flip</button>
+                <button onClick={this.reset} className="reset-button" disabled={this.state.isFlipping}>Reset</button>
                 <span>Out of {this.state.flipsCount} flips, there have been <span className={`heads_counter ${this.state.isFlipping && this.state.side === 1 ? "winner" : ""}`}>{this.state.headsCount} heads</span> and <span className={`heads_counter ${this.state.isFlipping && this.state.side === 0 ? "winner" : ""}`}>{this.state.tailsCount} tails</span>.</span>
             </div>
         );
